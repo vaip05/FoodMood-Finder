@@ -1,0 +1,262 @@
+{
+  "happy": [
+    {
+      "id": "happy-1",
+      "name": "Rainbow Acai Bowl",
+      "description": "Blended acai topped with fresh berries, granola, and coconut flakes.",
+      "whyItMatches": "Bright colors and natural sweetness mirror an upbeat, celebratory mood.",
+      "imageUrl": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&q=80",
+      "budget": "medium",
+      "distance": "short",
+      "dietary": ["vegetarian", "gluten_free", "dairy_free"]
+    },
+    {
+      "id": "happy-2",
+      "name": "Mango Sticky Rice",
+      "description": "Sweet mango over warm coconut sticky rice.",
+      "whyItMatches": "Tropical and indulgent—small joys that feel like a mini vacation.",
+      "imageUrl": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "vegan", "gluten_free", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "happy-3",
+      "name": "Caprese Skewers",
+      "description": "Cherry tomatoes, mozzarella, and basil with a drizzle of balsamic.",
+      "whyItMatches": "Fresh, simple, and party-friendly—great for sharing good vibes.",
+      "imageUrl": "https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=600&q=80",
+      "budget": "medium",
+      "distance": "walk",
+      "dietary": ["vegetarian", "gluten_free", "nut_free"]
+    },
+    {
+      "id": "happy-4",
+      "name": "Lemon Sorbet",
+      "description": "Tart, icy lemon sorbet in a chilled glass.",
+      "whyItMatches": "Zesty and refreshing—like sunshine in dessert form.",
+      "imageUrl": "https://images.unsplash.com/photo-1501443762994-4bd89a918d23?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegan", "vegetarian", "gluten_free", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "happy-5",
+      "name": "Shakshuka",
+      "description": "Eggs poached in spiced tomato sauce with crusty bread.",
+      "whyItMatches": "Warm, colorful, and satisfying—comfort that still feels lively.",
+      "imageUrl": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600&q=80",
+      "budget": "medium",
+      "distance": "short",
+      "dietary": ["vegetarian", "nut_free"]
+    }
+  ],
+  "sad": [
+    {
+      "id": "sad-1",
+      "name": "Mac and Cheese",
+      "description": "Creamy cheddar sauce folded into elbow pasta, baked until golden.",
+      "whyItMatches": "Classic comfort food—familiar and soothing when you need a hug in a bowl.",
+      "imageUrl": "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "nut_free"]
+    },
+    {
+      "id": "sad-2",
+      "name": "Chicken Noodle Soup",
+      "description": "Slow-simmered broth with tender chicken, carrots, and noodles.",
+      "whyItMatches": "Warm and gentle—often the first thing we reach for when we feel low.",
+      "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["dairy_free", "nut_free"]
+    },
+    {
+      "id": "sad-3",
+      "name": "Mashed Potatoes & Gravy",
+      "description": "Buttery mashed potatoes with rich brown gravy.",
+      "whyItMatches": "Soft textures and savory depth feel grounding and reassuring.",
+      "imageUrl": "https://images.unsplash.com/photo-1585518419759-94fd4caa8d6e?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "nut_free"]
+    },
+    {
+      "id": "sad-4",
+      "name": "Hot Chocolate",
+      "description": "Real cocoa, steamed milk, and a whisper of vanilla.",
+      "whyItMatches": "Small ritual of warmth—easy to sip slowly and breathe.",
+      "imageUrl": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "gluten_free", "nut_free"]
+    },
+    {
+      "id": "sad-5",
+      "name": "Grilled Cheese",
+      "description": "Crispy buttered bread with melted cheese—dip optional.",
+      "whyItMatches": "Simple nostalgia; low effort, high emotional payoff.",
+      "imageUrl": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "nut_free"]
+    }
+  ],
+  "stressed": [
+    {
+      "id": "stress-1",
+      "name": "Oatmeal with Banana & Almonds",
+      "description": "Steel-cut oats topped with sliced banana and toasted almonds.",
+      "whyItMatches": "Complex carbs and magnesium-rich nuts support steadier energy under pressure.",
+      "imageUrl": "https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegan", "vegetarian", "dairy_free", "gluten_free"]
+    },
+    {
+      "id": "stress-2",
+      "name": "Salmon & Steamed Greens",
+      "description": "Baked salmon with lemon and lightly seasoned broccoli or spinach.",
+      "whyItMatches": "Omega-3s and greens feel nourishing without weighing you down.",
+      "imageUrl": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80",
+      "budget": "medium",
+      "distance": "short",
+      "dietary": ["gluten_free", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "stress-3",
+      "name": "Chamomile Tea & Whole-Grain Toast",
+      "description": "Calming herbal tea with avocado or jam on toast.",
+      "whyItMatches": "Ritual + steady fuel—gentle on the nervous system.",
+      "imageUrl": "https://images.unsplash.com/photo-1544787219-7f62746462ef?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "vegan", "dairy_free", "nut_free", "gluten_free"]
+    },
+    {
+      "id": "stress-4",
+      "name": "Veggie Stir-Fry with Brown Rice",
+      "description": "Quick wok of colorful vegetables over fluffy brown rice.",
+      "whyItMatches": "Balanced plate that feels proactive—fuel without a sugar crash.",
+      "imageUrl": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegan", "vegetarian", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "stress-5",
+      "name": "Greek Yogurt Parfait",
+      "description": "Yogurt layered with berries and a sprinkle of seeds.",
+      "whyItMatches": "Protein and probiotics in a format that’s easy to eat between tasks.",
+      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "gluten_free", "nut_free"]
+    }
+  ],
+  "tired": [
+    {
+      "id": "tired-1",
+      "name": "Banana Peanut Butter Smoothie",
+      "description": "Blended banana, peanut butter, milk or oat milk, and a pinch of cinnamon.",
+      "whyItMatches": "Quick energy from natural sugars and healthy fats—minimal prep.",
+      "imageUrl": "https://images.unsplash.com/photo-1505252585461-04db1eb52668?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "gluten_free"]
+    },
+    {
+      "id": "tired-2",
+      "name": "Egg Fried Rice",
+      "description": "Day-old rice stir-fried with eggs, peas, and soy sauce.",
+      "whyItMatches": "Satisfying carbs and protein in one pan when you’re running on empty.",
+      "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&q=80",
+      "budget": "low",
+      "distance": "short",
+      "dietary": ["nut_free"]
+    },
+    {
+      "id": "tired-3",
+      "name": "Hummus & Pita",
+      "description": "Creamy hummus with warm pita and cucumber sticks.",
+      "whyItMatches": "No-cook option that still feels like a real meal.",
+      "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegan", "vegetarian", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "tired-4",
+      "name": "Trail Mix & Apple",
+      "description": "Seeds, dried fruit, and dark chocolate with a crisp apple on the side.",
+      "whyItMatches": "Portable fuel for when standing at the stove feels impossible.",
+      "imageUrl": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegan", "vegetarian", "gluten_free", "dairy_free"]
+    },
+    {
+      "id": "tired-5",
+      "name": "Baked Sweet Potato",
+      "description": "Whole sweet potato with butter or yogurt and a pinch of salt.",
+      "whyItMatches": "Hands-off oven time—complex carbs for sustained energy.",
+      "imageUrl": "https://images.unsplash.com/photo-1596097635121-14b63f7e0c1a?w=600&q=80",
+      "budget": "low",
+      "distance": "walk",
+      "dietary": ["vegetarian", "gluten_free", "nut_free"]
+    }
+  ],
+  "bored": [
+    {
+      "id": "bored-1",
+      "name": "DIY Rice Paper Rolls",
+      "description": "Rice paper, vermicelli, herbs, and dipping sauce—assemble your own.",
+      "whyItMatches": "Hands-on and playful; breaks the monotony of the usual routine.",
+      "imageUrl": "https://images.unsplash.com/photo-1534422298391-e4c8c172dddb?w=600&q=80",
+      "budget": "medium",
+      "distance": "short",
+      "dietary": ["vegan", "vegetarian", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "bored-2",
+      "name": "Korean Bibimbap Bowl",
+      "description": "Rice topped with assorted veggies, egg, and gochujang—mix it all up.",
+      "whyItMatches": "Lots of textures and colors; every bite can be a little different.",
+      "imageUrl": "https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&q=80",
+      "budget": "medium",
+      "distance": "medium",
+      "dietary": ["vegetarian", "nut_free"]
+    },
+    {
+      "id": "bored-3",
+      "name": "Build-Your-Own Tacos",
+      "description": "Warm tortillas with fillings you can mix and match.",
+      "whyItMatches": "Turns dinner into a small project—good when you need novelty.",
+      "imageUrl": "https://images.unsplash.com/photo-1565299585323-38174c0b5e0e?w=600&q=80",
+      "budget": "medium",
+      "distance": "short",
+      "dietary": ["nut_free"]
+    },
+    {
+      "id": "bored-4",
+      "name": "Spicy Mapo Tofu",
+      "description": "Silky tofu in a bold, numbing-spicy sauce over rice.",
+      "whyItMatches": "Big flavor wakes up the palate when everything feels bland.",
+      "imageUrl": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=80",
+      "budget": "low",
+      "distance": "medium",
+      "dietary": ["vegan", "vegetarian", "dairy_free", "nut_free"]
+    },
+    {
+      "id": "bored-5",
+      "name": "Charcuterie-for-One",
+      "description": "A few cheeses, crackers, fruit, and something pickled on a board.",
+      "whyItMatches": "Grazing and arranging gives your brain something low-stakes to do.",
+      "imageUrl": "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=600&q=80",
+      "budget": "high",
+      "distance": "short",
+      "dietary": ["vegetarian", "nut_free"]
+    }
+  ]
+}
