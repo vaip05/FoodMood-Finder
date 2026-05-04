@@ -53,8 +53,8 @@ export function PreferencePanel({
       </fieldset>
 
       <fieldset className="preference-panel__field">
-        <legend className="preference-panel__legend">Dietary needs</legend>
-        <p className="preference-panel__hint">Optional—select any that apply</p>
+        <legend className="preference-panel__legend">Dietary Preferences</legend>
+        <p className="preference-panel__hint">Optional. Select any that apply</p>
         <div className="preference-panel__checks">
           {dietaryOptions.map((opt) => (
             <label key={opt.id} className="check-option">

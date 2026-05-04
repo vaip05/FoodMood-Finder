@@ -39,7 +39,7 @@ export function RestaurantList({
         </p>
       )}
       <p className="restaurant-list__maps-tip" role="note">
-        Tap a restaurant name to open <strong>Google Maps</strong> — get directions,
+        Tap a restaurant name to open <strong>Google Maps</strong>. Get directions,
         hours, and read reviews there.
       </p>
       {meta?.dietaryNote && (

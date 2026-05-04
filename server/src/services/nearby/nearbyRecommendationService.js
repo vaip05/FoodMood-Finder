@@ -1,4 +1,4 @@
-import { BUDGET_RANK } from "../../constants/filters.js";
+//import { BUDGET_RANK } from "../../constants/filters.js";
 import { moodHintSet } from "./moodPlaceHints.js";
 import { radiusMetersForDistanceTier } from "./distanceRadius.js";
 import { formatDistanceMeters } from "./geo.js";
@@ -52,14 +52,6 @@ function matchesGoogleBudget(priceLevel, budgetKey) {
 
   if (budgetKey === "moderate" || budgetKey === "medium") {
     return priceLevel <= 3;
-  }
-
-  if (
-    budgetKey === "high" ||
-    budgetKey === "splurge" ||
-    budgetKey === "expensive"
-  ) {
-    return true;
   }
 
   return true;
@@ -177,7 +169,7 @@ export async function getNearbyRecommendations(opts) {
   const budgetKey = String(budget || "high").toLowerCase().trim();
   const hints = moodHintSet(moodKey);
   const radiusMeters = radiusMetersForDistanceTier(distance);
-  const maxBudgetRank = BUDGET_RANK[budgetKey] ?? 3;
+  //const maxBudgetRank = BUDGET_RANK[budgetKey] ?? 3;
 
   let raw = [];
   let source = "osm";
@@ -203,19 +195,17 @@ export async function getNearbyRecommendations(opts) {
   }
 
   if (
-  source === "google" &&
-  (budgetKey === "high" || budgetKey === "splurge" || budgetKey === "expensive")
-) {
-  const expensive = filtered.filter((p) => p.priceLevel >= 3);
-
-  if (expensive.length >= 3) {
-    filtered = expensive;
-  } else {
-    filtered = filtered.filter(
-      (p) => p.priceLevel == null || p.priceLevel >= 2
-    );
+    source === "google" &&
+    (budgetKey === "high" || budgetKey === "splurge" || budgetKey === "expensive")
+  ) {
+    const expensive = filtered.filter((p) => p.priceLevel >= 3);
+  
+    if (expensive.length >= 2) {
+      filtered = expensive;
+    } else {
+      filtered = filtered.filter((p) => p.priceLevel == null || p.priceLevel >= 2);
+    }
   }
-}
 
   if (filtered.length === 0) {
     return {
