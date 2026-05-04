@@ -530,4 +530,88 @@
   color: var(--text);
 }
 
+.mood-chip,
+.segment-option__ui {
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(120, 82, 54, 0.14);
+  box-shadow: 0 4px 12px rgba(83, 52, 30, 0.05);
+}
+
+.mood-chip:hover,
+.segment-option__ui:hover {
+  transform: translateY(-1px);
+  border-color: #fdba74;
+}
+
+.mood-chip--active,
+.segment-option input:checked + .segment-option__ui {
+  background: #fff0e6;
+  border-color: #fb923c;
+  color: #d9480f;
+  box-shadow: 0 6px 18px rgba(217, 72, 15, 0.12);
+}
+
+.segment-option--block .segment-option__ui {
+  border-radius: 18px;
+  padding: 0.85rem 1rem;
+}
+
+.restaurant-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(120, 82, 54, 0.14);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 42px rgba(83, 52, 30, 0.11);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 55px rgba(83, 52, 30, 0.16);
+}
+
+.restaurant-card__body {
+  padding: 1.25rem 1.35rem 1.35rem;
+}
+
+.restaurant-card__title {
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: #24120d;
+}
+
+.restaurant-card__dist {
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  color: #d9480f;
+  background: #fff0e6;
+}
+
+.restaurant-card__badge {
+  border-radius: 999px;
+  padding: 0.28rem 0.58rem;
+  font-weight: 800;
+}
+
+.restaurant-card__addr {
+  color: #756057;
+  font-size: 0.95rem;
+}
+
+.restaurant-card__why {
+  font-size: 0.95rem;
+  color: #2d1b15;
+}
+
+.restaurant-card__why-label {
+  color: #d9480f;
+  font-weight: 900;
+}
+
+.restaurant-card__link {
+  color: #d9480f;
+  font-weight: 800;
+}
+
 

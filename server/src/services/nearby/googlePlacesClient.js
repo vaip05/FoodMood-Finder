@@ -26,8 +26,6 @@ export async function fetchPlacesGoogleNearby(lat, lng, radiusMeters, apiKey) {
       "cafe",
       "fast_food_restaurant",
       "meal_takeaway",
-      "bakery",
-      "bar",
     ],
     maxResultCount: 20,
     locationRestriction: {
@@ -56,7 +54,23 @@ export async function fetchPlacesGoogleNearby(lat, lng, radiusMeters, apiKey) {
 
   const data = await res.json();
   const places = data.places || [];
-  return places.map((p) => normalizeGooglePlace(p, lat, lng));
+  const blockedTypes = new Set([
+    "shopping_mall",
+    "store",
+    "supermarket",
+    "grocery_store",
+    "department_store",
+    "sports_complex",
+    "stadium",
+    "park",
+    "tourist_attraction",
+    "bar"
+  ]);
+  return places
+  .filter((p) => p.businessStatus !== "CLOSED_PERMANENTLY")
+  .filter((p) => p.businessStatus !== "CLOSED_TEMPORARILY")
+  .filter((p) => !(p.types || []).some((t) => blockedTypes.has(t)))
+  .map((p) => normalizeGooglePlace(p, lat, lng, apiKey));
 }
 
 function normalizeGooglePlace(place, userLat, userLng) {

@@ -39,11 +39,30 @@ function moodScore(place, hints) {
   return s;
 }
 
-function matchesGoogleBudget(priceLevel, maxBudgetRank) {
+function matchesGoogleBudget(priceLevel, budgetKey) {
   if (priceLevel == null) return true;
 
-  const max = maxBudgetRank <= 1 ? 1 : maxBudgetRank <= 2 ? 2 : 4;
-  return priceLevel <= max;
+  if (
+    budgetKey === "low" ||
+    budgetKey === "budget" ||
+    budgetKey === "budget-friendly"
+  ) {
+    return priceLevel <= 2;
+  }
+
+  if (budgetKey === "moderate" || budgetKey === "medium") {
+    return priceLevel <= 3;
+  }
+
+  if (
+    budgetKey === "high" ||
+    budgetKey === "splurge" ||
+    budgetKey === "expensive"
+  ) {
+    return true;
+  }
+
+  return true;
 }
 
 function budgetScore(place, budget) {
