@@ -123,6 +123,32 @@ function whyLine(mood, place, moodScorePts) {
   return `Real spot on the map: ${tail}`;
 }
 
+function normalizeRestaurantName(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/\brestaurant\b/g, "")
+    .replace(/\bgrill\b/g, "")
+    .replace(/\bcafe\b/g, "")
+    .replace(/\bthe\b/g, "")
+    .replace(/[^a-z0-9]/g, "")
+    .trim();
+}
+
+function dedupeByName(items) {
+  const seen = new Set();
+
+  return items.filter((item) => {
+    const nameKey = normalizeRestaurantName(item.place?.name);
+
+    if (!nameKey) return false;
+    if (seen.has(nameKey)) return false;
+
+    seen.add(nameKey);
+    return true;
+  });
+}
+
 /**
  * @param {{
  *   lat: number;
@@ -172,9 +198,24 @@ export async function getNearbyRecommendations(opts) {
 
   if (source === "google") {
     filtered = filtered.filter((p) =>
-      matchesGoogleBudget(p.priceLevel, maxBudgetRank)
+      matchesGoogleBudget(p.priceLevel, budgetKey)
     );
   }
+
+  if (
+  source === "google" &&
+  (budgetKey === "high" || budgetKey === "splurge" || budgetKey === "expensive")
+) {
+  const expensive = filtered.filter((p) => p.priceLevel >= 3);
+
+  if (expensive.length >= 3) {
+    filtered = expensive;
+  } else {
+    filtered = filtered.filter(
+      (p) => p.priceLevel == null || p.priceLevel >= 2
+    );
+  }
+}
 
   if (filtered.length === 0) {
     return {
@@ -214,7 +255,8 @@ export async function getNearbyRecommendations(opts) {
   })
   .sort((a, b) => b.score - a.score);
 
-  const pool = scored.slice(0, Math.min(24, scored.length));
+  const deduped = dedupeByName(scored);
+  const pool = deduped.slice(0, Math.min(24, deduped.length));
   shuffleInPlace(pool);
 
   const maxPick = Math.min(5, pool.length);
@@ -297,3 +339,4 @@ function buildOsmMapsUrl(lat, lng, name) {
   const q = encodeURIComponent(`${name} @ ${lat},${lng}`);
   return `https://www.openstreetmap.org/search?query=${q}`;
 }
+
