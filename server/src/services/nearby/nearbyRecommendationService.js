@@ -30,33 +30,77 @@ function textBlob(place) {
 function moodScore(place, hints) {
   const blob = textBlob(place);
   let s = 0;
+
   for (const h of hints) {
     const needle = h.replace(/_/g, " ");
     if (blob.includes(h) || blob.includes(needle)) s += 4;
   }
+
   return s;
 }
 
 function matchesGoogleBudget(priceLevel, maxBudgetRank) {
   if (priceLevel == null) return true;
-  const max =
-    maxBudgetRank <= 1 ? 1 : maxBudgetRank <= 2 ? 2 : 4;
+
+  const max = maxBudgetRank <= 1 ? 1 : maxBudgetRank <= 2 ? 2 : 4;
   return priceLevel <= max;
+}
+
+function budgetScore(place, budget) {
+  const price = place.priceLevel;
+
+  // OpenStreetMap often does not provide price data.
+  if (price == null) return 0;
+
+  const budgetKey = String(budget || "high").toLowerCase();
+
+  if (
+    budgetKey === "low" ||
+    budgetKey === "budget" ||
+    budgetKey === "budget-friendly"
+  ) {
+    if (price <= 1) return 8;
+    if (price === 2) return 2;
+    return -6;
+  }
+
+  if (budgetKey === "moderate" || budgetKey === "medium") {
+    if (price === 2) return 8;
+    if (price === 1 || price === 3) return 3;
+    return -3;
+  }
+
+  if (
+    budgetKey === "high" ||
+    budgetKey === "splurge" ||
+    budgetKey === "expensive"
+  ) {
+    if (price >= 3) return 10;
+    if (price === 2) return 1;
+    return -8;
+  }
+
+  return 0;
 }
 
 function whyLine(mood, place, moodScorePts) {
   const bits = [];
+
   if (place.cuisine) bits.push(`${place.cuisine} food`);
+
   if (place.amenity === "cafe" || place.amenity === "bakery") {
     bits.push("a quick bite or drink");
   }
+
   if (moodScorePts >= 4) {
     bits.push(`leans into a “${mood}” kind of pick`);
   }
+
   const tail =
     bits.length > 0
       ? `${bits[0]}${bits[1] ? ` — ${bits[1]}` : ""}.`
       : "Worth a look based on what’s around you.";
+
   return `Real spot on the map: ${tail}`;
 }
 
@@ -85,9 +129,10 @@ export async function getNearbyRecommendations(opts) {
   } = opts;
 
   const moodKey = String(mood || "happy").toLowerCase().trim();
+  const budgetKey = String(budget || "high").toLowerCase().trim();
   const hints = moodHintSet(moodKey);
   const radiusMeters = radiusMetersForDistanceTier(distance);
-  const maxBudgetRank = BUDGET_RANK[String(budget || "high").toLowerCase()] ?? 3;
+  const maxBudgetRank = BUDGET_RANK[budgetKey] ?? 3;
 
   let raw = [];
   let source = "osm";
@@ -127,26 +172,54 @@ export async function getNearbyRecommendations(opts) {
   }
 
   const scored = filtered
-    .map((p) => {
-      const ms = moodScore(p, hints);
-      const distPenalty = p.distanceMeters / 100;
-      return { place: p, score: ms - distPenalty, moodScore: ms };
-    })
-    .sort((a, b) => b.score - a.score);
+  .map((p) => {
+    const ms = moodScore(p, hints);
+    const bs = budgetScore(p, budgetKey);
+    const distPenalty = p.distanceMeters / 100;
+
+    const typeBonus =
+      p.amenity === "restaurant"
+        ? 6
+        : p.amenity === "fast_food"
+        ? 3
+        : p.amenity === "cafe"
+        ? -5
+        : 0;
+
+    return {
+      place: p,
+      score: ms + bs + typeBonus - distPenalty,
+      moodScore: ms,
+      budgetScore: bs,
+    };
+  })
+  .sort((a, b) => b.score - a.score);
 
   const pool = scored.slice(0, Math.min(24, scored.length));
   shuffleInPlace(pool);
 
   const maxPick = Math.min(5, pool.length);
   const minPick = Math.min(3, maxPick);
-  const n =
-    maxPick === 0 ? 0 : randomInt(Math.max(1, minPick), maxPick);
+  const n = maxPick === 0 ? 0 : randomInt(Math.max(1, minPick), maxPick);
 
-  const picked = pool.slice(0, n);
+  const picked = [];
+let cafeCount = 0;
+
+for (const item of pool) {
+  const amenity = item.place.amenity;
+
+  if (amenity === "cafe" && cafeCount >= 1) continue;
+
+  if (amenity === "cafe") cafeCount++;
+
+  picked.push(item);
+
+  if (picked.length >= n) break;
+}
 
   const dietaryNote =
     dietary.length > 0
-      ? "Dietary filters aren’t fully available from map data—confirm with the restaurant before you order."
+      ? "As always with dietary restrictions, please confirm with the restaurant before you order."
       : null;
 
   const restaurantsBase = picked.map(({ place, moodScore: ms }) => ({
@@ -157,9 +230,9 @@ export async function getNearbyRecommendations(opts) {
     address: place.address,
     cuisine: place.cuisine,
     amenity: place.amenity,
-    /** Google Maps: directions, hours, Google reviews (opens in Maps app or web). */
+    priceLevel: place.priceLevel,
+    rating: place.rating,
     googleMapsUrl: googleMapsUrlForPlace(place),
-    /** Raw map source link (OpenStreetMap only; for attribution / power users). */
     sourceMapUrl:
       place.source === "osm"
         ? place.mapsUrl || buildOsmMapsUrl(place.lat, place.lng, place.name)
@@ -178,6 +251,7 @@ export async function getNearbyRecommendations(opts) {
         r._lng,
         yelpApiKey
       );
+
       const { _lat, _lng, ...pub } = r;
       return { ...pub, yelpUrl, yelpLinkKind };
     })
@@ -194,7 +268,7 @@ export async function getNearbyRecommendations(opts) {
       dietaryNote,
       message:
         source === "osm"
-          ? "Results from OpenStreetMap (free). For richer listings, set GOOGLE_PLACES_API_KEY on the server."
+          ? "Results from OpenStreetMap (free). For richer listings, set GOOGLE_PLACES_API_KEY on the server. Budget accuracy is better with Google Places because OpenStreetMap often does not include price data."
           : null,
     },
   };

@@ -88,8 +88,8 @@ export default function App() {
 
   const nearbyCaption =
     nearbySource === "google"
-      ? "Places from Google (live)."
-      : "Places from OpenStreetMap (live; coverage varies by area).";
+      ? "Places from Google."
+      : "Places from OpenStreetMap.";
 
   const showOsmHint = !meta.nearby?.googlePlacesConfigured;
 
@@ -100,7 +100,7 @@ export default function App() {
       <header className="app__header">
         <h1 className="app__title">Food Mood Finder</h1>
         <p className="app__tagline">
-          Real spots near you—matched to mood, budget, distance, and dietary needs.
+          Real spots near you according to mood, budget, distance, and dietary needs.
         </p>
       </header>
 

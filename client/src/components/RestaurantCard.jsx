@@ -65,6 +65,8 @@ export function RestaurantCard({ place }) {
               Raw data on OpenStreetMap
             </a>
           )}
+
+          
         </div>
       </div>
     </article>
